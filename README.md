@@ -1,4 +1,5 @@
 # web-340
 Node.js class repository
-Contributors: Sarah Massie
-Zahra Massoud 
+# contributors
+Zahra Massoud - Bellevue University
+Sarah Massie - Bellevue University
