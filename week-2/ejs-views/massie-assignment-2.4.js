@@ -10,7 +10,7 @@ app.set("view engine", "ejs");
 // tell express to use the ejs view engine
 
 app.get("/", function(request, response) {
-    response.render("index", {
+    response.render("index.ejs", {
         firstName: "Sarah",
         lastName: "Massie",
         address: "Orange County"
