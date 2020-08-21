@@ -10,7 +10,7 @@ app.set("view engine", "ejs");
 app.use(logger("short"));
 
 app.get("/:employeeId", function(request, response) {
-    var employeeId = parseInt(request.params.employeeId, 4);
+    var employeeId = parseInt(request.params.employeeId, 10);
 
     response.render("index", {
         employeeId: employeeId
