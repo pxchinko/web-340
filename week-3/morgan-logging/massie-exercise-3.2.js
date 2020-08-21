@@ -2,6 +2,7 @@ var express = require("express");
 var http = require("http");
 var path = require("path");
 var logger = require("morgan");
+
 var app = express();
 
 app.set("views", path.resolve(__dirname, "views")); // tells express the views are in the "views" directory

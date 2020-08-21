@@ -1,5 +1,5 @@
 {
-    "name": "package.json",
+    "name": "morgan-logging",
     "author": "Sarah Massie",
     "private": "true",
     "dependencies": {
