@@ -10,15 +10,13 @@ app.set("view engine", "ejs");
 app.use(logger("short"));
 
 app.get("/:employeeId", function(request, response) {
-    var employeeId = parseInt(request.params.employeeId, 10);
+    var employeeId = parseInt(request.params.employeeId);
 
     response.render("index", {
         employeeId: employeeId
     });
 });
 
-console.log(employeeId);
-
 http.createServer(app).listen(8080, function() {
-    console.log("Application started on port 8080", 8080);
+    console.log("Application started on port ", 8080);
 });
