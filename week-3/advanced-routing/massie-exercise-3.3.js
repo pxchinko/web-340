@@ -17,6 +17,8 @@ app.get("/:employeeId", function(request, response) {
     });
 });
 
+console.log(employeeId);
+
 http.createServer(app).listen(8080, function() {
     console.log("Application started on port 8080", 8080);
 });
