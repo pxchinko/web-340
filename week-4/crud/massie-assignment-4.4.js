@@ -1,6 +1,6 @@
 /*
 ============================================
-; Title:  app.js
+; Title:  massie-assignment-4.4.js
 ; Modified by: Sarah Massie
 ; Author: Professor Krasso
 ; Date:   31 August 2020
