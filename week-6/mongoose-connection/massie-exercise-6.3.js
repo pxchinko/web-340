@@ -1,3 +1,12 @@
+/*
+============================================
+; Title: massie-exercise-6.3.js
+; Author: Professor Krasso
+; Date: September 11 2020
+; Modified By: Sarah Massie
+; Description: Connecting Node.js to MongoDB
+;===========================================
+*/
 var express = require("express");
 var mongoose = require("mongoose");
 var http = require("http");
