@@ -2,7 +2,7 @@
 <html lang="en">
   <%- include ("header") %>
 
-  <body>
+  <body class="bg-blue">
     <%- include ("navbar") %>
 
     <div role="main" class="container" style="width: 50%;">
@@ -17,7 +17,7 @@
 
         <div class="form-group">
           <!-- CSRF token -->
-          <input name="_csrf" value="<%= csrfToken %>" type="hidden" />
+          <input name="_csrf" value="name" type="hidden" />
 
           <button type="submit" class="btn btn-secondary float-right">
             Submit

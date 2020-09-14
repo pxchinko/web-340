@@ -1,6 +1,3 @@
-const header = require("../../Massie-header.js")
-    console.log(header.display("Sarah", "Massie", "Assignment 6.4"))
-
 /*
 ============================================
 ; Title:  app.js
@@ -21,25 +18,24 @@ var app = express();
 app.set("views", path.resolve(__dirname, "views"));
 app.set("view engine", "ejs");
 app.use(logger("short"));
+app.use(express.static(__dirname + 'css/style.css'));
 
-app.get("/", function(request, response) {
-  response.render("index");
- }); 
-
-app.get('/new', function(request, response) {
-  response.render('new', {
-    title: 'EMS | New'
+app.get('/', function(req, res) {
+  res.render('index', {
+    title: 'EMS'
   });
 });
 
-app.get('/list', function(rewuest, response) {
-  response.render('list', {
-    title: "EMS | List"
-  })
-})
+app.get('/list', function(req, res) {
+  res.render('list', {
+    title: 'EMS | List'
+  });
+});
 
-app.get('/view/:queryName', function(request, response) {
-  const queryName = http.request.params['queryName'];
+app.get('/new', function(req, res) {
+  res.render('new', {
+    title: 'EMS | New Employee'
+  });
 });
 
 app.listen(3000, function() {

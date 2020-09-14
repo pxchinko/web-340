@@ -1,6 +1,7 @@
 {
     "name": "ems",
     "author": "Sarah Massie",
+    "description": "A list of employees using the EJS template",
     "private": "true",
     "dependencies": {
         "aos": "^2.3.4",
