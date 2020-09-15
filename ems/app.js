@@ -18,7 +18,7 @@ var app = express();
 app.set("views", path.resolve(__dirname, "views"));
 app.set("view engine", "ejs");
 app.use(logger("short"));
-app.use(express.static(__dirname + 'css/style.css'));
+app.use(express.static(__dirname + 'images'));
 
 app.get('/', function(req, res) {
   res.render('index', {
