@@ -19,8 +19,7 @@ var mongoose = require("mongoose");
 var bodyParser = require("body-parser");
 var csrfProtection = csrf({cookie: true});
 
-
-var Employee = require("./models/employees");
+var Employee = require("./models/employees.js");
 
 var app = express();
 

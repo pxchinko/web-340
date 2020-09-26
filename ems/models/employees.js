@@ -12,10 +12,9 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 // employees schema
-let EmployeesSchema = new Schema({
-    firstName: { type: String, required: true },
-    lastName: { type: String, required: true }
+let employeesSchema = new Schema({
+    name: { type: String, required: true }
 });
 
 // export the model so its publicly available
-module.exports = mongoose.model('Employee', EmployeesSchema);
+module.exports = mongoose.model('Employee', employeesSchema);
