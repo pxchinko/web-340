@@ -29,10 +29,8 @@ let app = express();
 const conn = "mongodb+srv://admin:MonkeyPassword@buwebdev-cluster-1.eate3.mongodb.net/test";
 
 mongoose.connect(conn, {
-  promiseLibrary: require('bluebird'),
   useUnifiedTopology: true,
-  useNewUrlParser: true,
-  useCreateIndex: true,
+  useNewUrlParser: true
 }).then(() => {
   console.log('Connection to the database instance successful')
 }).catch(error => {
