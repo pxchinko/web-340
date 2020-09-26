@@ -118,28 +118,6 @@ app.post('/process', function(req, res) {
   });
 });
 
-//  redirect to home page
-app.get('/view/:queryName', function(req, res) {
-  const queryName = req.params.queryName;
-
-  Employee.find({'name': queryName}, function(error, employees) {
-    if (error) {
-      throw error;
-    } else {
-      console.log(employees);
-
-      if (employees.length > 0) {
-        res.render('view', {
-          title: 'EMS | View',
-          employee: employees
-        })
-      } else {
-        res.redirect('/list');
-      }
-    }
-  })
-});
-
 http.createServer(app).listen(3000, function() {
   console.log("Application started on port", 3000);
 });
