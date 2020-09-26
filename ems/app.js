@@ -10,26 +10,33 @@
 
 const express = require("express");
 const logger = require("morgan");
+const helmet = require("helmet");
+const cookieParser = require("cookie-parser");
+const csrf = require("csurf");
 const http = require("http");
 const path = require("path");
-const app = express();
 const mongoose = require("mongoose");
-const Employee = require("./models/employees");
 const bodyParser = require("body-parser");
+const csrfProtection = csrf({cookie: true});
+
+
+const Employee = require("./models/employees");
+const { response } = require("express");
+
+let app = express();
 
 // database connection
 const conn = "mongodb+srv://admin:MonkeyPassword@buwebdev-cluster-1.eate3.mongodb.net/test";
 
 mongoose.connect(conn, {
-  useMongoClient: true,
   promiseLibrary: require('bluebird'),
   useUnifiedTopology: true,
   useNewUrlParser: true,
   useCreateIndex: true,
 }).then(() => {
   console.log('Connection to the database instance successful')
-}).catch(err => {
-  console.log('MongoDB Error: ${err.message}')
+}).catch(error => {
+  console.log(`MongoDB Error: ${error.message}`)
 });
 mongoose.Promise = global.Promise;
 const db = mongoose.connection;
@@ -39,33 +46,41 @@ db.once("open", function() {
 });
 
 app.use(logger("short"));
-app.use(
-  bodyParser.urlencoded({
+app.use(helmet.xssFilter);
+app.use(bodyParser.urlencoded({
     extended: true
   })
 );
+app.use(cookieParser());
+app.use(csrfProtection);
+app.use(function(req, res, next) {
+  var token = request.csrfToken();
+  res.cookie("XSRF-TOKEN", token);
+  res.locals.csrfToken = token;
+  next();
+});
+
 
 app.set("views", path.resolve(__dirname, "views"));
 app.set("view engine", "ejs");
-app.set('port', process.env.PORT || 3000);
 
+// Home page
 app.get('/', function(req, res) {
-  Employee.find({}, function(err, employees) {
-    if (err) {
-      console.log(err);
-      throw err;
-    } else {
-      console.log(employees);
-      res.render('index', {
-        title: 'EMS'
-      });
-    }
+  res.render('index', {
+    title: 'EMS | Home',
+    employees: employees,
+    message: "New Employee Entry Page"
   });
 });
 
-app.get('/list', function(req, res) {
-  res.render('list', {
-    title: 'EMS | List'
+app.get("/list", function(req,res){
+  Employee.find({}, function(error, employees){
+    if (error) throw error;
+    res.render("list",{
+      title: "EMS | List",
+      employees: employees
+    });
+    console.log(employees);
   });
 });
 
@@ -76,39 +91,40 @@ app.get('/new', function(req, res) {
 });
 
 app.post('/process', function(req, res) {
+  console.log(req.body.txtName);
   if (!req.body.txtName) {
     res.status(400).send('Entries must have a name');
     return;
-  }
+  };
 
 // get request's form data
-  const employeeName = req.body.txtName;
+  var employeeName = req.body.txtName;
   console.log(employeeName);
 
 // employee model
-  let employee = new Employee({
+  var employee = new Employee({
     name: employeeName
   });
 
-  employee.save(function(err) {
-    if (err) {
-      console.log(err);
-      throw err;
+// save employee name
+  employee.save(function(error) {
+    if (error) {
+      console.log(error);
+      throw error;
     } else {
       console.log(employeeName + ' saved successfully!');
-      res.redirect('/');
-    }
+    };
+    res.redirect('/list');
   });
 });
 
 //  redirect to home page
 app.get('/view/:queryName', function(req, res) {
-  const queryName = req.params['queryName'];
+  const queryName = req.params.queryName;
 
-  Fruit.find({'name': queryName}, function(err, employees) {
-    if (err) {
-      console.log(err);
-      throw err;
+  Employee.find({'name': queryName}, function(error, employees) {
+    if (error) {
+      throw error;
     } else {
       console.log(employees);
 
@@ -118,12 +134,12 @@ app.get('/view/:queryName', function(req, res) {
           employee: employees
         })
       } else {
-        res.redirect('/');
+        res.redirect('/list');
       }
     }
   })
 });
 
-app.listen(3000, function() {
-  console.log("Application started on port", 3000)
+http.createServer(app).listen(3000, function() {
+  console.log("Application started on port", 3000);
 });
