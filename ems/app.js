@@ -8,25 +8,24 @@
 ;===========================================
 */
 
-const express = require("express");
-const logger = require("morgan");
-const helmet = require("helmet");
-const cookieParser = require("cookie-parser");
-const csrf = require("csurf");
-const http = require("http");
-const path = require("path");
-const mongoose = require("mongoose");
-const bodyParser = require("body-parser");
-const csrfProtection = csrf({cookie: true});
+var express = require("express");
+var logger = require("morgan");
+var helmet = require("helmet");
+var cookieParser = require("cookie-parser");
+var csrf = require("csurf");
+var http = require("http");
+var path = require("path");
+var mongoose = require("mongoose");
+var bodyParser = require("body-parser");
+var csrfProtection = csrf({cookie: true});
 
 
-const Employee = require("./models/employees");
-const { response } = require("express");
+var Employee = require("./models/employees");
 
-let app = express();
+var app = express();
 
 // database connection
-const conn = "mongodb+srv://admin:MonkeyPassword@buwebdev-cluster-1.eate3.mongodb.net/test";
+var conn = "mongodb+srv://admin:MonkeyPassword@buwebdev-cluster-1.eate3.mongodb.net/test";
 
 mongoose.connect(conn, {
   useUnifiedTopology: true,
@@ -36,6 +35,7 @@ mongoose.connect(conn, {
 }).catch(error => {
   console.log(`MongoDB Error: ${error.message}`)
 });
+
 mongoose.Promise = global.Promise;
 
 app.use(logger("short"));
