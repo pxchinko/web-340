@@ -60,7 +60,7 @@ app.use(function(req, res, next) {
   next();
 });
 
-
+// set up the views
 app.set("views", path.resolve(__dirname, "views"));
 app.set("view engine", "ejs");
 
@@ -73,7 +73,7 @@ app.get('/', function(req, res) {
   });
 });
 
-app.get("/list", function(req,res){
+app.get("/list", function(req, res){
   Employee.find({}, function(error, employees){
     if (error) throw error;
     res.render("list",{
