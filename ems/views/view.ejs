@@ -12,14 +12,41 @@
       <br />
       <div>
         <div class="form-group">
-          <label for="txtName">Name:</label>
+          <label for="txtFirstName"> First Name:</label>
           <input
             type="text"
             class="form-control"
-            id="txtName"
+            id="txtFirstName"
             readonly
-            value="<%= employee[0].name %>"
-            name="txtName"
+            value="<%= employee[0].firstName %>"
+            name="txtFirstName"
+          />
+          <label for="txtLastName"> Last Name:</label>
+          <input
+            type="text"
+            class="form-control"
+            id="txtLastName"
+            readonly
+            value="<%= employee[0].lastName %>"
+            name="txtLastName"
+          />
+          <label for="txtJobPosition"> Job Position:</label>
+          <input
+            type="text"
+            class="form-control"
+            id="txtJobPosition"
+            readonly
+            value="<%= employee[0].jobPosition %>"
+            name="txtJobPosition"
+          />
+          <label for="txtDepartment"> Department:</label>
+          <input
+            type="text"
+            class="form-control"
+            id="txtDepartment"
+            readonly
+            value="<%= employee[0].department %>"
+            name="txtDepartment"
           />
         </div>
       </div>
