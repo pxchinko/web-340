@@ -6,48 +6,31 @@
     <%- include ("navbar") %>
   <section id="list">
     <div class="container">
+      <% if employees.length) { %>
+        <a href="/new">Add New Employee</a>
       <table>
         <thead>
           <tr>
-            <th>Employee Name</th>
+            <th>First Name</th>
+            <th>Last Name</th>
             <th>Position</th>
             <th>Department</th>
-            <th>Hire Date</th>
           </tr>
         </thead>
         <tbody>
+          <% employees.forEach(function(entry) { %>
           <tr>
-            <td>Cell 1</td>
-            <td>Cell 2</td>
-            <td>Cell 3</td>
-            <td>Cell 4</td>
-          </tr>
-          <tr>
-            <td>Cell 1</td>
-            <td>Cell 2</td>
-            <td>Cell 3</td>
-            <td>Cell 4</td>
-          </tr>
-          <tr>
-            <td>Cell 1</td>
-            <td>Cell 2</td>
-            <td>Cell 3</td>
-            <td>Cell 4</td>
-          </tr>
-          <tr>
-            <td>Cell 1</td>
-            <td>Cell 2</td>
-            <td>Cell 3</td>
-            <td>Cell 4</td>
-          </tr>
-          <tr>
-            <td>Cell 1</td>
-            <td>Cell 2</td>
-            <td>Cell 3</td>
-            <td>Cell 4</td>
+            <td><%= entry.firstName %></td>
+            <td><%= entry.lastName %></td>
+            <td><%= entry.jobPosition %></td>
+            <td><%= entry.department %></td>
           </tr>
         </tbody>
+        <% }) %>
       </table>
+      <% } else { %>
+      No entries! <a href='/new'>Add New Employee</a>
+    <% } %>
     </div>
   </section>  
 

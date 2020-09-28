@@ -20,6 +20,7 @@ var bodyParser = require("body-parser");
 var csrfProtection = csrf({cookie: true});
 
 var Employee = require("./models/employees.js");
+const employees = require("./models/employees.js");
 
 var app = express();
 
@@ -82,20 +83,48 @@ app.get('/new', function(req, res) {
   });
 });
 
+app.get(`/view:queryName`, function(req, res) {
+  const queryName = req.params['queryName'];
+
+  Employee.find({'name': queryName}, function(error, employees) {
+    if (error) {
+      console.log(error);
+      throw error;
+    } else {
+      console.log(employees)
+      if (employees.length > 0) {
+        res.render('view', {
+          title: 'EMS | View',
+          employees: employees
+        })
+      } else {
+        res.redirect('/')
+      }
+    }
+  })
+});
+
 app.post('/process', function(req, res) {
   console.log(req.body.txtName);
-  if (!req.body.txtName) {
+  if (!req.body.firstName||!req.body.lastName||!req.body.jobPosition||!req.body.department) {
     res.status(400).send('Entries must have a name');
     return;
   };
 
 // get request's form data
-  var employeeName = req.body.txtName;
-  console.log(employeeName);
+  var firstName = req.body.firstName;
+  var lastName = req.body.lastName;
+  var jobPosition = req.body.jobPosition;
+  var department = req.body.department;
+  var employeeName = firstName + " " + lastName;
+  console.log(employeeName + ', ' + jobPosition + ', ' + department);
 
 // employee model
   var employee = new Employee({
-    name: employeeName
+    firstName: firstName,
+    lastName: lastName,
+    jobPosition: jobPosition,
+    department: department
   });
 
 // save employee name
