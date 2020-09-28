@@ -2,13 +2,14 @@
 <html lang="en">
   <%- include ("header") %>
   <%- include ("style") %>
-  <body class="bg-blue">
+
+  <body>
     <%- include ("navbar") %>
 <section id="new">
     <div role="main">
       <br /><br />
 
-      <h2>Employees Entry Page </h2>
+      <h2><%= title %></h2>
       <form method="post" action="/process">
         <div class="form-group">
           <label for="txtName">Name:</label>
@@ -17,19 +18,15 @@
 
         <div class="form-group">
           <!-- CSRF token -->
-          <input name="_csrf" value="name" type="hidden" />
-
-          <button type="submit" class="btn btn-secondary float-right">
-            Submit
-          </button>
+          <input name="_csrf" value="<%= csrfToken %>" type="hidden" />
+          <button type="submit" class="btn btn-secondary float-right">Submit</button>
         </div>
       </form>
 
       <br /><br />
-
-      <a href="/list">Return to Employees</a>
-    </div>
-  </section>
+    <a href="/list">Return to Employees</a>
+  </div>
+</section>
     <%- include ("footer") %>
 
     <%- include ("scripts") %>
