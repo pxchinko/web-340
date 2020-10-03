@@ -1,15 +1,40 @@
 
-    <%- include ("style") %>
-<footer class="container-fluid footer">
+  <%- include ("style") %>
+<footer>
+  <div class="mt-5 pt-5 pb-5 footer">
     <div class="container">
       <div class="row">
-        <div class="col-12">
-          <p></p>
-          <p></p>
-          <% let year = (new Date()).getFullYear() %>
-          <p style="float:right;">&copy;<%= year %> Massie</p>
+        <div class="col-lg-5 col-xs-12 about-company">
+          <h2>Massie | EMS</h2>
+          <p class="pr-5 text-white-50">A website showcasing work in Node.js, Express, and MongoDB.</p>
+          <p><a href="http://www.facebook.com/pxchinko/" target="_blank"><i class="fa fa-facebook-square mr-1"></i></a>
+            <a href="https://www.linkedin.com/in/sarah-massie-612756180" target="_blank"><i class="fa fa-linkedin-square"></i></a></p>
+        </div>
+        <div class="col-lg-3 col-xs-12 links">
+          <h4 class="mt-lg-0 mt-sm-3">Links</h4>
+            <ul class="m-0 p-0">
+              <li><a href="https://www.linkedin.com/in/sarah-massie-612756180" target="_blank">LinkedIn</a></li>
+              <li><a href="http://www.facebook.com/pxchinko/" target="_blank">Facebook</a></li>
+              <li><a href="https://www.instagram.com/pxchinko/" target="_blank">Instagram</a></li>
+              <li><a href="https://github.com/pxchinko" target="_blank">Github</a></li>
+            </ul>
+        </div>
+        <div class="col-lg-4 col-xs-12 location">
+          <h4 class="mt-lg-0 mt-sm-4">Location</h4>
+          <p>This is where I would put an address</p>
+          <p class="mb-0"><i class="fa fa-phone mr-3"></i>(408) 754-3010</p>
+          <p><i class="fa fa-envelope-o mr-3"></i>pxchinko@gmail.com</p>
         </div>
       </div>
-  
+      <hr>
+      <div class="row">
+        <div class="col copyright">
+          <% let year = (new Date()).getFullYear() %>
+          <p class=""><small class="text-white-50">Copyright Sarah Massie | EMS © <%= year %>. All Rights Reserved.</small></p>
+        </div>
+      </div>
+    </div>
     </div>
   </footer>
+
+<%- include ("scripts") %>

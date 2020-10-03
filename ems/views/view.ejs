@@ -4,58 +4,34 @@
 
   <body>
     <%- include ("navbar") %>
+  <section class="page">
+    <div role="main" class="slide-in-bottom">
+      <h2 class="float-left">Employee Details</h2>
 
-    <div role="main" class="container" style="width: 50%;">
-      <br /><br />
-
-      <h2>Employee Details</h2>
-      <br />
-      <div>
-        <div class="form-group">
-          <label for="txtFirstName"> First Name:</label>
-          <input
-            type="text"
-            class="form-control"
-            id="txtFirstName"
-            readonly
-            value="<%= employee[0].firstName %>"
-            name="txtFirstName"
-          />
-          <label for="txtLastName"> Last Name:</label>
-          <input
-            type="text"
-            class="form-control"
-            id="txtLastName"
-            readonly
-            value="<%= employee[0].lastName %>"
-            name="txtLastName"
-          />
-          <label for="txtJobPosition"> Job Position:</label>
-          <input
-            type="text"
-            class="form-control"
-            id="txtJobPosition"
-            readonly
-            value="<%= employee[0].jobPosition %>"
-            name="txtJobPosition"
-          />
-          <label for="txtDepartment"> Department:</label>
-          <input
-            type="text"
-            class="form-control"
-            id="txtDepartment"
-            readonly
-            value="<%= employee[0].department %>"
-            name="txtDepartment"
-          />
-        </div>
-      </div>
-
-      <br /><br />
-
-      <a href="/">&larr; OK</a>
+      <table >
+        <thead> 
+          <tr>
+            <th>Employee ID</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Position</th>
+            <th>Department</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><%= employee[0].id.substr( 0, 6 ) %></td>
+            <td><%= employee[0].firstName %></td>
+            <td><%= employee[0].lastName %></td>
+            <td><%= employee[0].jobPosition %></td>
+            <td><%= employee[0].department %></td>
+          </tr>
+        </tbody>
+      </table>
+      <a class="btn float-right" href="/list">Return to Employees</a>
     </div>
-
+  </section>
     <%- include ("scripts") %>
+    <%- include ('footer') -%>
   </body>
 </html>
