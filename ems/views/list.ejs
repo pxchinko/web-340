@@ -7,22 +7,24 @@
     <%- include('navbar.ejs') %>
 
     <section class="page">
-      <div role="main" id="list" class="slide-in-bottom">
-        <div><h2 class="float-left">Employee Listing</h2>
-        <a class="btn float-right" href="/new">Add New</a></div>
-        <table >
-          <thead> 
-            <tr>
-              <th>Employee ID</th>
-              <th>First Name</th>
-              <th>Last Name</th>
-              <th>Position</th>
-              <th>Department</th>
-              <th>View Record</th>
-            </tr>
-          </thead>
-            <tbody>
-              <% for(var i = 0; i < employees.length; i++) { %>
+      <div role="main" id="list" class="container slide-in-bottom">
+        <div>
+          <h2 class="float-left text-white">Employee Listing</h2>
+        </div>
+        <div>
+          <table class="table-hover table-striped">
+            <thead class="thead-light"> 
+              <tr>
+                <th>Employee ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Position</th>
+                <th>Department</th>
+                <th>View Record</th>
+              </tr>
+            </thead>
+              <tbody>
+                <% for(var i = 0; i < employees.length; i++) { %>
                 <tr>
                   <td><%= employees[i].id.substr( employees[i].length, 6 ) %></td>
                   <td><%= employees[i].firstName %></td>
@@ -34,6 +36,8 @@
               </tbody>
               <% } %>
             </table>
+          </div>
+          <a class="btn float-right" href="/new">Add New</a>
     </div>
   </section>
     <%- include('footer.ejs') %>

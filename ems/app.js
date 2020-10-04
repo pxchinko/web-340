@@ -92,14 +92,14 @@ app.use(logger("short"));
 app.get("/", function (request, response) {
     response.render("index", {
         title: "EMS | Massie",
-        employees: employees,
-        message: "New Employee:"
+        employees: employees
     });
 });
 
 app.get('/new', function(request, response) {
   response.render("new", {
-    title: 'EMS | New Employee'
+    title: 'EMS | New',
+    message: "New Employee:"
   });
 });
 
